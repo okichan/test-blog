@@ -5,12 +5,15 @@
    <tr>
       <th>title</th>
       <th>body</th>
+      <th></th>
    </tr>
 
    <% @articles.each do |f| %>
       <tr>
          <td class="title"><%= link_to f.title, article_path(f) %></td>
          <td><%= truncate(f.text, length: 30, separator: '。', omission: ' ') {link_to "...read more", article_path(f)} %></td>
+         <td> <%= link_to '[Edit]', edit_article_path(f) %>
+         </td>
       </tr>
    <% end %>
 </table>
