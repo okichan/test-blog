@@ -1,3 +1,18 @@
-<%= @article.each do |f| %>
-    <%= f.text %><br>
-<% end %>
+<h1><%= 'All posts'.upcase %></h1>
+<p class="float-right button"><%= link_to 'Create new',  new_article_path %></p>
+
+<table>
+   <tr>
+      <th>title</th>
+      <th>body</th>
+   </tr>
+
+   <% @articles.each do |f| %>
+      <tr>
+         <td class="title"><%= link_to f.title, article_path(f) %></td>
+         <td><%= truncate(f.text, length: 30, separator: '。', omission: ' ') {link_to "...read more", article_path(f)} %></td>
+      </tr>
+   <% end %>
+</table>
+
+<p><%= link_to 'Back',  root_path %></p>

@@ -1,21 +1,19 @@
 <h1>Create new</h1>
 
-<table>
+<% if @article.errors.any? %>
+	<div class="error">
+		<p><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</p>
+		<% @article.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		<% end %>
+	</div>
+<% end %>
+
+
 	<%= form_for :article, url: articles_path do |f| %>
-		<tr>
-			<td>
-			<%= f.text_field :title, placeholder: 'Title' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<%= f.text_area :text, placeholder: 'Write something' %>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<%= f.submit %>
-			</td>
-		</tr>
+		<%= f.text_field :title, placeholder: 'Title' %><br>
+		<br>
+		<%= f.text_area :text, placeholder: 'Write something' %><br>
+		<br>
+		<%= f.submit %>
 	<% end %>
-</table>
