@@ -1,0 +1,21 @@
+<h1>Create new</h1>
+
+<table>
+	<%= form_for :article, url: articles_path do |f| %>
+		<tr>
+			<td>
+			<%= f.text_field :title, placeholder: 'Title' %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<%= f.text_area :text, placeholder: 'Write something' %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<%= f.submit %>
+			</td>
+		</tr>
+	<% end %>
+</table>
