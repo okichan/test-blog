@@ -1,10 +1,13 @@
 <h1><%= 'All posts'.upcase %></h1>
 <p class="float-right button"><%= link_to 'Create new',  new_article_path %></p>
 
+
+
 <table>
    <tr>
       <th>title</th>
       <th>body</th>
+      <th>Posted at</th>
       <th></th>
    </tr>
 
@@ -12,10 +15,13 @@
       <tr>
          <td class="title"><%= link_to f.title, article_path(f) %></td>
          <td><%= truncate(f.text, length: 30, separator: '。', omission: ' ') {link_to "...read more", article_path(f)} %></td>
-         <td> <%= link_to '[Edit]', edit_article_path(f) %>
-         </td>
+         <td> <%= f.created_at.in_time_zone("Melbourne").strftime('%A %d %b %Y %H:%M') %></td>
+         <td> <%= link_to '[Edit]', edit_article_path(f) %><br>
+            <%= link_to '[Delete]', article_path(f), method: :delete, data: {confirm: "Really?"} %></td>
       </tr>
    <% end %>
 </table>
 
-<p><%= link_to 'Back',  root_path %></p>
+<div class="footer">
+      <p><%= link_to '[Back]',  root_path %></p>
+</div>
